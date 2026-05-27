@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: #0d1117;
+    color: white;
+    overflow: hidden;
+}
+
+#map-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.glass-hud {
+    position: absolute;
+    top: 2rem;
+    z-index: 10;
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.left-hud {
+    /* Mappls forces its white card to the left wall. 
+       We will abandon the left wall entirely and stack this at the BOTTOM RIGHT */
+    left: auto;
+    right: 2rem;
+    transform: none;
+    top: auto !important;
+    bottom: 2rem;
+    width: 350px;
+    animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.right-hud {
+    /* This is the Llama 3.1 Terminal. Place it at TOP RIGHT securely above the Stats */
+    left: auto;
+    right: 2rem;
+    top: 2rem !important;
+    width: 350px;
+    height: calc(100vh - 380px); /* Increased padding to prevent box clipping */
+    display: flex;
+    flex-direction: column;
+    animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-hud h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.glass-hud h1 span {
+    color: #4da6ff;
+    font-weight: 300;
+}
+
+.right-hud h3 {
+    color: #00e676;
+    margin-bottom: 0.2rem;
+}
+.sub-text {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.hud-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-box {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 12px;
+    flex: 1;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-box p {
+    font-size: 0.75rem;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.alert-text {
+    color: #ff4d4d;
+    font-size: 1.4rem;
+}
+
+.active-text {
+    color: #4da6ff;
+    font-size: 1.4rem;
+}
+
+.eta-box {
+    padding: 1rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(0, 230, 118, 0.15), rgba(0, 0, 0, 0.6));
+    border-left: 4px solid #00e676;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#ai-console {
+    flex: 1;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    padding-right: 10px;
+}
+
+#ai-console p {
+    margin-bottom: 12px;
+    color: #c9d1d9;
+    border-left: 2px solid #58a6ff;
+    padding-left: 10px;
+    background: rgba(25, 30, 40, 0.5);
+    padding: 8px;
+    border-radius: 0 4px 4px 0;
+}
+
+.ai-time {
+    color: #ff7b72;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/* Scrollbar styling for console */
+#ai-console::-webkit-scrollbar { width: 6px; }
+#ai-console::-webkit-scrollbar-thumb { background: #4da6ff; border-radius: 3px; }
+
+@keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
